@@ -1,22 +1,25 @@
+import random
+import time
+
 def insertion_sort(arr):
     for i in range(1, len(arr)):
         key = arr[i]
         j = i - 1
-        while j >= 0 and arr[j] > key:
+        while j >= 0 and key < arr[j]:
             arr[j + 1] = arr[j]
             j -= 1
         arr[j + 1] = key
 
-# Take input from the user
-n = int(input("Enter the number of elements: "))
-arr = []
-for _ in range(n):
-    element = int(input("Enter an element: "))
-    arr.append(element)
+# Generate a random array of size 50
+random_array = [random.randint(0, 100000) for _ in range(1000)]
 
-print("Original array:", arr)
+# Measure the time taken for sorting
+start_time = time.time()
+insertion_sort(random_array)
+end_time = time.time()
 
-# Call the insertion sort function
-insertion_sort(arr)
+# Calculate the time taken in milliseconds
+execution_time_ms = (end_time - start_time) * 1000
 
-print("Sorted array:", arr)
+print("Sorted array:", random_array)
+print("Time taken for sorting: {:.6f} milliseconds".format(execution_time_ms))
